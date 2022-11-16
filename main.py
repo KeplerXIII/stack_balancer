@@ -29,6 +29,7 @@ class Stack:
     def size(self):
         return len(self.stack)
 
+
 # создаём балансер
 
 def balancer(data: str) -> str:
@@ -42,6 +43,7 @@ def balancer(data: str) -> str:
         return "Сбалансировано"
     else:
         return "Несбалансированно"
+
 
 def balancer_V2(data: str) -> str:
     open_list = ["[", "{", "("]
@@ -61,6 +63,7 @@ def balancer_V2(data: str) -> str:
         return "Сбалансировано"
     else:
         return "Несбалансированно"
+
 
 if __name__ == '__main__':
     pass

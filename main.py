@@ -1,3 +1,5 @@
+# объявляем класс
+
 class Stack:
     def __init__(self, stack=[]):
         self.stack = stack
@@ -27,13 +29,20 @@ class Stack:
     def size(self):
         return len(self.stack)
 
+# создаём балансер
+
+def balancer(data: str) -> str:
+    bracket_list = list(data)
+    stack = Stack(stack=data)
+    stack_len = stack.size()
+    first_half = "".join(bracket_list[0:int(stack_len / 2)])
+    second_half = "".join(bracket_list[int(stack_len / 2):])
+    first_half = first_half.replace('[', ']').replace('{', '}').replace('(', ')')
+    if second_half == first_half[::-1]:
+        return "Сбалансировано"
+    else:
+        return "Несбалансированно"
 
 
-
-ex = Stack()
-ex.push("a")
-ex.push("b")
-print(ex.pop())
-print(ex)
-print(ex.peek())
-print(ex.size())
+if __name__ == '__main__':
+    pass

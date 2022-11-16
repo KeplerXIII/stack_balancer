@@ -43,6 +43,24 @@ def balancer(data: str) -> str:
     else:
         return "Несбалансированно"
 
+def balancer_V2(data: str) -> str:
+    open_list = ["[", "{", "("]
+    close_list = ["]", "}", ")"]
+    stack = Stack()
+    for i in data:
+        if i in open_list:
+            stack.push(i)
+        elif i in close_list:
+            pos = close_list.index(i)
+            if ((stack.size() > 0) and
+                    (open_list[pos] == stack.stack[stack.size() - 1])):
+                stack.pop()
+            else:
+                return "Несбалансированно"
+    if stack.size() == 0:
+        return "Сбалансировано"
+    else:
+        return "Несбалансированно"
 
 if __name__ == '__main__':
     pass

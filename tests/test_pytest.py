@@ -1,5 +1,6 @@
-from main import Stack, balancer
+from main import Stack, balancer, balancer_V2
 import pytest
+
 
 # тестируем методы созданного класса, скелет без FIXTURE массива переменных
 
@@ -31,7 +32,7 @@ def test_size():
     assert result == 3
 
 
-# Тестируем балансировщик
+# Тестируем балансировщики
 
 FIXTURE = [
     ('(((([{}]))))', 'Сбалансировано'),
@@ -41,7 +42,24 @@ FIXTURE = [
     ('[[{())}]', 'Несбалансированно')
 ]
 
+
 @pytest.mark.parametrize("data, etalon", FIXTURE)
 def test_balancer(data, etalon):
     result = balancer(data)
+    assert result == etalon
+
+
+FIXTURE = [
+    ('(((([{}]))))', 'Сбалансировано'),
+    ('{{[()]}}', 'Сбалансировано'),
+    ('[([])((([[[]]])))]{()}', 'Сбалансировано'),
+    ('}{}', 'Несбалансированно'),
+    ('{{[(])]}}', 'Несбалансированно'),
+    ('[[{())}]', 'Несбалансированно')
+]
+
+
+@pytest.mark.parametrize("data, etalon", FIXTURE)
+def test_balancer_V2(data, etalon):
+    result = balancer_V2(data)
     assert result == etalon
